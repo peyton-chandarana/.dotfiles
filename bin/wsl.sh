@@ -38,7 +38,7 @@ cp ./etc/vimrc ~/.vimrc
 echo "LOG --> Installing dependencies and updating..."
 sudo apt update -y
 sudo apt upgrade -y
-sudo apt install zsh build-essential wget curl vim htop neofetch -y
+sudo apt install zsh build-essential wget curl vim htop -y
 ################################################################################
 # Configure Zsh
 echo "LOG --> Configuring Zsh..."

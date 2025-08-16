@@ -41,7 +41,7 @@ sudo apt upgrade -y
 sudo apt install zsh build-essential wget curl vim htop \
   fprintd libpam-fprintd network-manager-openconnect \
   network-manager-openconnect-gnome openconnect gimp \
-  obs-studio neofetch gnome-tweaks google-chrome-stable -y
+  obs-studio gnome-tweaks google-chrome-stable -y
 sudo pam-auth-update
 ################################################################################
 # Install docker

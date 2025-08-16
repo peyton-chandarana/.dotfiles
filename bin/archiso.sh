@@ -183,7 +183,7 @@ fi
 pacstrap -K /mnt vim htop networkmanager zsh ufw \
   networkmanager-openconnect \
   sudo git wget zsh openssh zip unzip \
-  base-devel neofetch pacman-contrib
+  base-devel pacman-contrib
 # Install KDE
 pacstrap -K /mnt xorg sddm plasma
 # Install manual pages
