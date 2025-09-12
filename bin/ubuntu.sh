@@ -39,14 +39,10 @@ echo "LOG --> Installing dependencies and updating..."
 sudo apt update -y
 sudo apt upgrade -y
 sudo apt install zsh build-essential wget curl vim htop \
-  fprintd libpam-fprintd network-manager-openconnect \
-  network-manager-openconnect-gnome openconnect gimp \
-  obs-studio gnome-tweaks google-chrome-stable -y
-sudo pam-auth-update
+  gnome-tweaks -y
 ################################################################################
 # Install docker
 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
-
 
 # Add Docker's official GPG key:
 sudo apt-get update
