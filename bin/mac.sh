@@ -29,14 +29,15 @@ cp ./etc/config ~/.ssh
 cp ./etc/vimrc ~/.vimrc
 ########################################
 # Install Homebrew
-echo "LOG --> Installing Homebrew..."
-curl https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh --output homebrew_install.sh
-chmod 700 homebrew_install.sh
-NONINTERACTIVE=1 /bin/bash -c "./homebrew_install.sh"
-rm ./homebrew_install.sh
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zshrc
-eval "$(/opt/homebrew/bin/brew shellenv)"
-brew install wget
+#echo "LOG --> Installing Homebrew..."
+#curl https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh --output homebrew_install.sh
+#chmod 700 homebrew_install.sh
+#NONINTERACTIVE=1 /bin/bash -c "./homebrew_install.sh"
+#rm ./homebrew_install.sh
+#echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zshrc
+#eval "$(/opt/homebrew/bin/brew shellenv)"
+brew install wget curl htop vim
+brew anaylitics off
 ########################################
 # Install and configure iTerm2 and fonts
 echo "LOG --> Installing iTerm2 and fonts..."
@@ -56,6 +57,7 @@ echo "setopt HIST_IGNORE_ALL_DUPS" >> ~/.zshrc
 echo "autoload -Uz compinit && compinit" >> ~/.zshrc
 echo "zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'" >> ~/.zshrc
 echo 'source ~/.dotfiles/etc/zshrc_custom' >> ~/.zshrc
+echo 'export HOMEBREW_NO_ANALYTICS=1' >> ~/.zshrc
 ########################################
 # Install and Configure Oh-My-Posh.
 echo "LOG --> Installing Oh-My-Posh..."
