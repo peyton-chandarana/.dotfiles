@@ -1,0 +1,84 @@
+#!/bin/sh
+# upssched-cmd: handles UPS events and logs while on battery.
+# - Logs every few seconds while on battery
+# - Shuts down if battery <= 35%
+# - Shuts down if on battery >= 5 min
+# - Stops logging when power returns (OL)
+
+UPS_NAME="myups@127.0.0.1"             # must match MONITOR entry
+BATTERY_THRESHOLD=35                   # percent cutoff
+UPS_MON_CMD="/usr/sbin/upsmon"
+LOG_INTERVAL=10                        # seconds between "still on battery" logs
+MAX_LOG_TIME=300                       # 5 minutes
+
+log() { logger -t upssched-cmd -- "$@"; }
+
+upsc_get() {
+  key="$1"
+  upsc "$UPS_NAME" 2>/dev/null |
+    awk -F: -v k="$key" '$1==k { sub(/^[^:]*: */,""); print; exit }' |
+    sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
+}
+
+do_shutdown() {
+  log "Triggering forced shutdown via upsmon"
+  $UPS_MON_CMD -c fsd
+}
+
+monitor_onbattery() {
+  elapsed=0
+  while [ "$elapsed" -lt "$MAX_LOG_TIME" ]; do
+    status=$(upsc_get ups.status)
+    charge=$(upsc_get battery.charge)
+    charge_int=${charge%%.*}
+    [ -z "$charge_int" ] && charge_int=0
+
+    if echo "$status" | grep -q "OL"; then
+      log "Power restored (OL) — stopping on-battery monitor"
+      exit 0
+    fi
+
+    log "Still on battery (${elapsed}s): charge=${charge_int}% status=${status}"
+
+    if [ "$charge_int" -le "$BATTERY_THRESHOLD" ]; then
+      log "Battery ${charge_int}% <= ${BATTERY_THRESHOLD}% — forcing shutdown"
+      do_shutdown
+      exit 0
+    fi
+
+    sleep "$LOG_INTERVAL"
+    elapsed=$((elapsed + LOG_INTERVAL))
+  done
+  log "Reached ${MAX_LOG_TIME}s on battery — forcing shutdown"
+  do_shutdown
+}
+
+case "$1" in
+  onbatt)
+    log "ONBATT event — starting on-battery monitor loop (${MAX_LOG_TIME}s)"
+    monitor_onbattery &
+    ;;
+  outage)
+    # Backup timer just in case
+    log "Timer expired: outage — forcing shutdown"
+    do_shutdown
+    ;;
+  shutdowncritical)
+    log "LOWBATT event — immediate shutdown"
+    do_shutdown
+    ;;
+  commbad)
+    log "COMMBAD event — communication lost"
+    ;;
+  commok)
+    log "COMMOK event — communication restored"
+    ;;
+  powerdown)
+    log "Powerdown requested by upsmon"
+    ;;
+  *)
+    log "Unknown argument: $1"
+    ;;
+esac
+exit 0
+

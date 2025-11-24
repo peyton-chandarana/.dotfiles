@@ -1,0 +1,9 @@
+# Copy this file to /etc/udev/rules.d/
+SUBSYSTEM!="usb", GOTO="nut-usbups_rules_end"
+
+# UPS
+# Replace idVendor xxxx and idProduct xxxx with `lsusb` info
+ACTION=="add|change", SUBSYSTEM=="usb|usb_device", SUBSYSTEMS=="usb|usb_device", ATTR{idVendor}=="xxxx", ATTR{idProduct}=="xxxx", MODE="664", GROUP="nut", RUN+="/sbin/upsdrvctl stop; /sbin/upsdrvctl start"
+
+LABEL="nut-usbups_rules_end"
+

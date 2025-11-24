@@ -1,0 +1,9 @@
+[upsmon]
+  password = "password"
+  upsmon primary
+  actions = SET
+  instcmds = ALL
+
+[clientmonitor]
+  password = "password"
+  upsmon secondary
