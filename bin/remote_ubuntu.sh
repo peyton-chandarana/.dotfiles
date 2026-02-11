@@ -26,12 +26,6 @@ mkdir -m 700 -p ~/.ssh
 cp ./etc/config ~/.ssh
 cp ./etc/vimrc ~/.vimrc
 ################################################################################
-# Install dependencies
-echo "LOG --> Installing dependencies and updating..."
-sudo apt update -y
-sudo apt upgrade -y
-sudo apt install zsh build-essential wget curl vim htop -y
-################################################################################
 # Configure Zsh
 echo "LOG --> Configuring Zsh..."
 chsh -s $(which zsh)
