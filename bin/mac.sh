@@ -65,7 +65,7 @@ echo "export XDG_CACHE_HOME=~/.xdg-cache" >> ~/.zshrc
 mkdir ~/.oh-my-posh
 brew install jandedobbeleer/oh-my-posh/oh-my-posh
 echo "LOG --> Setting Oh-My-Posh Theme..."
-echo 'eval "$(oh-my-posh init zsh --config ~/.dotfiles/etc/s7117.omp.json)"' >> ~/.zshrc
+echo 'eval "$(oh-my-posh init zsh --config ~/.dotfiles/etc/peytonsc.omp.json)"' >> ~/.zshrc
 ########################################
 # Install CLI tools.
 ## Install zsh-autosuggestions

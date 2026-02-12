@@ -6,7 +6,7 @@ This repository contains my personal development environment setup files and scr
 
 ## Installing Tools:
 I setup my environment primarily using the Makefile and passing in the corresponding platform name. As of now the following Makefile targets are supported which runs their respective setup scripts:
-- [arch](https://github.com/s7117/.dotfiles#arch-pre-os-install)
+- [arch](https://github.com/peyton-chandarana/.dotfiles#arch-pre-os-install)
 - ubuntu
 - docker
 - mac
@@ -25,7 +25,7 @@ A pre-OS install script has been included for Arch Linux. This pre-install scrip
 2. [Boot](https://wiki.archlinux.org/title/installation_guide#Boot_the_live_environment) to the Arch Live USB and then [connect to the internet](https://wiki.archlinux.org/title/installation_guide#Connect_to_the_internet).
 3. Use one of the following methods to run the `archiso.sh` script:
 
-- `zsh <(curl -s https://raw.githubusercontent.com/s7117/.dotfiles/main/bin/archiso.sh)`  
+- `zsh <(curl -s https://raw.githubusercontent.com/peyton-chandarana/.dotfiles/main/bin/archiso.sh)`  
 - Download the script to a separate USB and run using `./archiso.sh`  
 
 4. While running the script will prompt you multiple times to continue. Enter `Y` to continue or anything else to exit the script.
@@ -63,7 +63,7 @@ Reboot after these steps...
 
 ### Running the Post-Install Script:
 1. Login and open terminal.
-2. `git clone https://github.com/s7117/.dotfiles.git`
+2. `git clone https://github.com/peyton-chandarana/.dotfiles.git`
 3. `cd .dotfiles`
 4. `make arch # Enter sudo password as needed`
 5. `sudo vi /etc/default/grub`

@@ -98,7 +98,7 @@ mkdir -p ~/.oh-my-posh/bin
 wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O ~/.oh-my-posh/bin/oh-my-posh
 chmod +x ~/.oh-my-posh/bin/oh-my-posh
 echo "LOG --> Setting Oh-My-Posh Theme..."
-echo 'eval "$(oh-my-posh --init --shell zsh --config ~/.dotfiles/etc/s7117.omp.json)"' >> ~/.zshrc
+echo 'eval "$(oh-my-posh --init --shell zsh --config ~/.dotfiles/etc/peytonsc.omp.json)"' >> ~/.zshrc
 ################################################################################
 # Fira Code Fonts
 curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest \

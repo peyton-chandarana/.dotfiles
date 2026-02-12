@@ -17,7 +17,7 @@ export LSCOLORS=GxFxBxDxCxegedabagacad
 # PATH Modificiations
 ################################################################################
 export PATH=$PATH:.
-export PATH=$PATH:/home/s7117/.local/bin
+export PATH=$PATH:/home/$USER/.local/bin
 #################################################################################
 # Aliases
 ################################################################################
@@ -127,26 +127,6 @@ function zipup() {
   VAR=$1
   VAR=${VAR%/}
   zip -r "$VAR.zip" ./"$VAR" 
-}
-
-function create_docker_env() {
-  VAR=$1
-  if [ -z $VAR ]
-  then
-    echo "ERROR: Argumnet required."
-  else
-    docker run --name $VAR --hostname "${VAR}_Docker" --restart-policy unless-stopped s7117/ubuntu_20_04_env
-  fi
-}
-
-function docker_env_shell() {
-  VAR=$1
-  if [ -z $VAR ]
-  then
-    echo "ERROR: Container name required."
-  else
-    docker exec -u s7117 -w /home/s7117 $VAR /bin/zsh
-  fi
 }
 
 function clean_docker() {                                                       
