@@ -26,6 +26,11 @@ mkdir -m 700 -p ~/.ssh
 cp ./etc/config ~/.ssh
 cp ./etc/vimrc ~/.vimrc
 ################################################################################
+# Install dependencies
+sudo apt update
+sudo apt upgrade -y
+sudo apt install zsh build-essential wget curl vim htop -y
+################################################################################
 # Configure Zsh
 echo "LOG --> Configuring Zsh..."
 chsh -s $(which zsh)
@@ -59,6 +64,16 @@ echo "source ~/.cli_tools/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zsh
 ## Install zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.cli_tools/zsh-syntax-highlighting
 echo "source ~/.cli_tools/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
+################################################################################
+# Install Miniforge3
+if [[ ! -d "~/.miniforge3" ]]; then
+    MF3_PATH="$HOME/.miniforge3"
+    echo "LOG --> Installing Miniforge3..."
+    mkdir -m 700 -p $MF3_PATH
+    wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+    SHELL=/usr/bin/zsh bash ./Miniforge3-$(uname)-$(uname -m).sh -b -p $MF3_PATH -f -c
+    rm ./Miniforge3*
+fi
 ################################################################################
 # Post Run Instructions
 echo "DONE"
